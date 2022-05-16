@@ -83,8 +83,19 @@ body {
   bottom: 12.25rem;
   display: none;
 }
+@media (max-width: 480px) {
+  .container__body #usrlog,
+.container__body #passlog {
+    top: 15.4rem;
+  }
+}
 .container__body #passlog {
   bottom: 7.25rem;
+}
+@media (max-width: 480px) {
+  .container__body #passlog {
+    top: 20.4rem;
+  }
 }
 .container__body #username,
 .container__body #password {

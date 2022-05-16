@@ -23,12 +23,13 @@ class userinfo {
 }
 //toggleing the styles of container title elements
 login.addEventListener("click", () => {
+  createAccount = true;
+  console.log(createAccount);
   login.classList.remove("light");
   signup.classList.remove("dark");
   login.classList.add("dark");
 });
 signup.addEventListener("click", () => {
-  createAccount = true;
   signup.classList.add("dark");
   login.classList.remove("dark");
   login.classList.add("light");
@@ -40,6 +41,16 @@ let AddDatabase = (username, pass, remember) => {
   console.log(remember);
 };
 //loginfunction
+function loginAccount() {
+  if (Database == null && tempDatabase == null) {
+    alert("User do not exist Click on 'Sign Up'!");
+    username.value = "";
+    pass.value = "";
+  } else {
+    let response = validateUser(username.value, pass.value);
+    button.innerText = response;
+  }
+}
 //signup function
 function checkUserData() {
   let log = "";
@@ -47,9 +58,6 @@ function checkUserData() {
     if (!isNaN(username.value)) {
       log = "! username only include [A-Z] or [a-z]";
       logMsg(usrlog, log, "red");
-    } else {
-      log = " Good !";
-      logMsg(usrlog, log, "green");
     }
   });
   if (Database == null && tempDatabase == null) {
@@ -66,16 +74,18 @@ button.addEventListener("click", () => {
   if (username.value == "") logMsg(usrlog, "*This field is required", "red");
   else if (pass.value == "") logMsg(passlog, "*This field is requierd", "red");
   else {
-    if (Database === null && tempDatabase === null) {
+    if (Database === null && tempDatabase === null && !createAccount) {
       AddDatabase(username.value, pass.value, remember.value);
       username.value = "";
       button.innerText = "success";
       setTimeout(() => {
         location.reload();
       }, 1000);
-    } else {
-      let response = validateUser(username.value, pass.value);
-      button.innerText = response;
+    } else if (createAccount) loginAccount();
+    else {
+      alert('User Allready exits Click on "Log in"');
+      username.value = "";
+      pass.value = "";
     }
   }
 });

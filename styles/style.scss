@@ -84,10 +84,16 @@ body {
       font-size: rem(12);
       position: absolute;
       bottom: rem(196);
+      @include breakpoint-up(480px) {
+        top: rem(246.4);
+      }
       display: none;
     }
     #passlog {
       bottom: rem(116);
+      @include breakpoint-up(480px) {
+        top: rem(326.4);
+      }
     }
     #username,
     #password {
