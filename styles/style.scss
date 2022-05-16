@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;500;600;700&display=swap");
 //functions
 @function rem($px) {
-  @return ($px/16) + rem;
+  @return calc($px/16) + rem;
 }
 //mixins
+@mixin breakpoint-up($window_size) {
+  @media (max-width: $window_size) {
+    @content;
+  }
+}
 //global-classes
 .light {
   background-color: transparent;
@@ -21,16 +26,20 @@
 body {
   font-family: "Quicksand", sans-serif;
   background-image: linear-gradient(135deg, #4d262e, #af374b);
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
 }
 .container {
   width: rem(350);
   height: rem(355);
   background-color: #fdfdfd;
   border-radius: rem(5);
-
   position: relative;
   margin-inline: auto;
   margin-top: rem(175);
+  @include breakpoint-up(480px) {
+    height: rem(579);
+  }
   &__title {
     width: 33%;
     height: rem(40);
@@ -42,28 +51,45 @@ body {
     padding: rem(10) rem(20);
     gap: rem(10);
     justify-content: left;
-    .login {
+    .signUp {
       font-size: rem(18);
       font-weight: 600;
+      cursor: pointer;
     }
     i {
       width: rem(20);
       height: rem(20);
     }
   }
-  .signUp {
-    left: calc(33% - 15px);
+  #login {
+    left: calc(33% - 10px);
+    font-weight: 600;
+    cursor: pointer;
   }
   &__body {
-    line-height: 1.9;
+    line-height: 2.3;
     padding: rem(60) rem(30);
+    @include breakpoint-up(480px) {
+      padding-top: rem(175.6);
+    }
     label:first-child {
       display: block;
       margin-bottom: rem(4);
       font-size: rem(16);
       font-weight: 700;
+      // margin-top: rem(3);
     }
-    #userid,
+    #usrlog,
+    #passlog {
+      font-size: rem(12);
+      position: absolute;
+      bottom: rem(196);
+      display: none;
+    }
+    #passlog {
+      bottom: rem(116);
+    }
+    #username,
     #password {
       width: 100%;
       padding: rem(5) rem(20);
@@ -77,6 +103,7 @@ body {
     bottom: 0px;
     button {
       width: 100%;
+      cursor: pointer;
       background: #af374b;
       padding: rem(23) 0;
       border: none;

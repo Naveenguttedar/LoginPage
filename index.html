@@ -13,34 +13,37 @@
   </head>
   <body>
     <div class="container">
-      <div class="container__title dark" id="login">
+      <div class="container__title signUp dark" id="signUp">
+        <i class="fa-solid fa-user-plus"></i>
+        SignUP
+      </div>
+      <div class="container__title light" id="login">
         <div class="login">
           <i class="fa-solid fa-arrow-right-to-bracket"></i>
           Login
         </div>
       </div>
-      <div class="container__title signUp light" id="signUp">
-        <i class="fa-solid fa-user-plus"></i>
-        SignUP
-      </div>
       <div class="container__body">
         <div class="username">
           <label for="username">username</label>
-          <input type="text" name="username" id="userid" />
+          <input type="text" name="username" id="username" />
         </div>
+        <div id="usrlog">this is user log</div>
         <div class="pass">
           <label for="pass">password </label>
           <input type="password" name="pass" id="password" />
         </div>
+        <div id="passlog">pass log</div>
         <div class="remember">
           <input type="checkbox" name="remember" id="remembered" />
           <label for="remember">Remember me</label>
         </div>
       </div>
       <div class="container__footer">
-        <button>GET STARTED</button>
+        <button id="button">GET STARTED</button>
       </div>
     </div>
   </body>
-  <script src="script.js"></script>
+  <!-- <script type="module" src="passAuth.js"></script> -->
+  <script src="script.js" type="module"></script>
 </html>
